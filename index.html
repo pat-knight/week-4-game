@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Star Wars RPG Game</title>
+  <title>Simpsons RPG Game</title>
   <!-- Reset stylesheet -->
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <!-- bootstrap 3.3.7 -->
@@ -13,44 +13,50 @@
   <link href='https://fonts.googleapis.com/css?family=Inconsolata:700' rel='stylesheet' type='text/css'>
   <!-- link font here -->
   <link href= rel="stylesheet">
+   <!-- JQuery -->
+   <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script> 
+   <!-- Game logic -->
+   <script type="text/javascript" src="assets/javascript/game.js"></script>
 </head>
 
 <body>
-  <header>
-    <img src=>
-  </header>
-  <div class="container" id="game-section">
-    <div class="container col-lg-12" id="characters-section">
-      <div class="container section-title">Choose player</div>
+    <div class="main-section-title">Simpsons</div>
+    <div id="main-game-section">
+    
+    <div id="characters-section">
+    <div class="section-title">Select Your Character</div>
+    <div id="character-area"></div>
     </div>
-    <div class="container col-lg-4" id="selected-character-section">
-      <div class="section-title container"></div>
-      <div id="selected-character"></div>
+    
+    <div id="selected-character-section">
+    <div class="section-title">Your Character</div>
+    
+    <div id="selected-character"></div>
     </div>
-     <div class="section-title container col-lg-4">Combat
-    	<div id="fight-section">
-      		<button class="btn" id="attack-button">Attack</button>
-      		<div class="jumbotron" id="statusMessage"></div>
-    	</div>   
-    </div>	
+    
+    <div id="available-to-attack-section">
+    <div class="section-title">Enemies Available To Attack</div>
+    </div>
+    <div class="section-title">Fight Section</div>
+    <div id="fight-section">
+    <button id="attack-button" style="display: none;">Attack</button>
+    </div>
     <div id="action">
-      <div class="character-section">
-        <div class="container section-title col-lg-3">
-        	<div id="opponent"></div>
-        </div>	
-      </div>
-    </div>    
-    <div class="container" id="available-enemy-section">
-      <div class="section-title"></div>
+    <div class="character-section">
+    <div class="section-title">Defender</div>
+    
+    <div id="defender"></div>
     </div>
+    </div>
+    </div>
+    
+    <div id="game-message"></div>
+    <button id="reset-button" style="display: none;">Reset Game</button>
 
-  </div>
-  <!-- JQuery -->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-  <!-- bootstrap JS -->
+ <!-- bootstrap JS -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <!-- Game logic -->
-  <script type="text/javascript" src="assets/javascript/game.js"></script>
+ 
 </body>
 
 </html>
+
