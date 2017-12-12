@@ -1,12 +1,13 @@
 /*link test*/
 
   body {
-    font-family:'Share Tech Mono',Arial,Helvetica,sans-serif;
+    font-family: 'Permanent Marker', cursive;
     background-color: yellow;
-    background-image:url(../images/background.jpg);
+    background-image: url(../images/background3.jpg);
     background-repeat:no-repeat;
     background-position:center;
     background-attachment:fixed;
+    background-size: cover;
   }
   
   img {
@@ -27,14 +28,18 @@
   .character{
     display:inline-block;
     border-style:solid;
-    border-color:green;
+    border-color: black;
     border-width:3px;
+    border-radius: 5px;
     cursor:pointer;
-    background-color:white;
+    background-color: rgb(113, 206, 243);
+    margin: 10px;
+  }
+  .character:hover {
+    transform: scale(1.1);
   }
   .character-image{
-    padding-right:16px;
-    padding-left:16px;
+    padding: 0 12px;
     margin-top:3px;
     margin-bottom:3px;
   }

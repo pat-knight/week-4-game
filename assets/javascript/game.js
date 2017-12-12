@@ -12,28 +12,28 @@
     //Array of Playable Characters
     function playerReset() { //render all characters
        return {
-        'charOne': {
-            name: "homer",
+        'homer': {
+            name: "Homer",
             hp: 120,
             attackPower: 8,
             imageUrl: "assets/images/homer.jpg",
             counterAttack: 15
         },
-        'charTwo': {
-            name: "Grimey",
+        'grimey': {
+            name: "Frank Grimes",
             hp: 100,
             attackPower: 14,
-            imageUrl: "assets/images/frank.jpg",
+            imageUrl: "assets/images/frank2.jpg",
             counterAttack: 5
         },
-        'charThree': {
-            name: "Hank",
+        'hank': {
+            name: "Hank Scorpio",
             hp: 150,
             attackPower: 14,
             imageUrl: "assets/images/hank.jpg",
             counterAttack: 20
         },
-        'charFour': {
+        'mcbain': {
             name: "McBain",
             hp: 180,
             attackPower: 7,
@@ -134,7 +134,7 @@
                     alert("You Win! Click reset to play again");  
                     $("#reset-button").show();
                 } else {
-                    alert("You defeated " + game.activeDef.name + "Select another enemy to fight");
+                    alert(`You defeated ${game.activeDef.name} Select your net oppopnent.`);
                     enableOpponentSelection();
                 }
                return true } 
@@ -167,8 +167,8 @@
              game.attacks++;
              attack(game.attacks);
              defend();
-             $('#selected-character .character-health').text(game.charSelected.hp);
-             $('#defender .character-health').text(game.activeDef.hp);
+             $('#selected-character .character-health').text(`HP ${game.charSelected.hp}`);
+             $('#defender .character-health').text(`HP ${game.activeDef.hp}`);
              if(attackState()){$(this).hide()}})
 
         $('#reset-button').on('click.reset',function(){
