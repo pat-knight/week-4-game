@@ -56,7 +56,7 @@
         var playerDiv = $("<div class='character' data-name='"+ key+"'>");
         var playerName = $("<div class= 'character-name'>").text(players.name);
         var playerImage = $("<img alt='player image' class='character-image'>").attr("src", players.imageUrl);
-        var playerHP = $("<div class= 'character-health'>").text(players.hp);
+        var playerHP = $("<div class= 'character-health'>").text(`HP ${players.hp}`);
         playerDiv.append(playerName);
         playerDiv.append(playerImage);
         playerDiv.append(playerHP);
@@ -153,27 +153,32 @@
 
     $(document).ready(function() {
         $('#character-area').on('click','.character',function(){
-        var selectedKey = $(this).attr('data-name')
-        game.charSelected = players[selectedKey];
-        console.log('player selected')
-        $('#selected-character').append(this)
-        renderOpponents(selectedKey);
-        $('#characters-section').hide()
-        game.opponentsLeft = Object.keys(players).length- 1
-        enableOpponentSelection()})
+            var selectedKey = $(this).attr('data-name');
+            game.charSelected = players[selectedKey];
+            console.log('player selected');
+            $('#selected-character').append(this);
+            renderOpponents(selectedKey);
+            $('#characters-section').hide();
+            game.opponentsLeft = Object.keys(players).length- 1
+            enableOpponentSelection();
+        }
+    )
         
         $('#attack-button').on('click.attack',function(){
-             console.log('attack clicked')
-             game.attacks++;
-             attack(game.attacks);
-             defend();
-             $('#selected-character .character-health').text(`HP ${game.charSelected.hp}`);
-             $('#defender .character-health').text(`HP ${game.activeDef.hp}`);
-             if(attackState()){$(this).hide()}})
+                    console.log('attack clicked');
+                    game.attacks++;
+                    attack(game.attacks);
+                    defend();
+                    $('#selected-character .character-health').text(`HP ${game.charSelected.hp}`);
+                    $('#defender .character-health').text(`HP ${game.activeDef.hp}`);
+                    if(attackState()){$(this).hide();
+                }
+            }
+        )
 
         $('#reset-button').on('click.reset',function(){
             console.log('resetting game')
-            emptyDivs()
-            $(this).hide()
+            emptyDivs();
+            $(this).hide();
             gameInit()})
             gameInit()}) 
