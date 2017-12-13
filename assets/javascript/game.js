@@ -5,12 +5,12 @@
     var game;
     function gameInit(){
         console.log("game init");
-         players = playerReset();
-         game = resetGame();
+         players = playerReset(); // assigning value to players, inside array
+         game = resetGame(); 
          renderPlayers();
     }
     //Array of Playable Characters
-    function playerReset() { //render all characters
+    function playerReset() { //define all players values
        return {
         'homer': {
             name: "Homer",
@@ -42,16 +42,16 @@
         },
     }};
 
-    function resetGame(){
+    function resetGame(){ //empty keys
         return {
-        charSelected: null,
-        activeDef: null,
+        charSelected: null, //user player
+        activeDef: null, //current opponent
         opponentsLeft: 0,
         attacks: 0
         }
     }
 
-    function createPlayerDiv(players, key){
+    function createPlayerDiv(players, key){//create character skeleton, fill with players
         console.log("creatCharDiv");
         var playerDiv = $("<div class='character' data-name='"+ key+"'>");
         var playerName = $("<div class= 'character-name'>").text(players.name);
@@ -159,7 +159,7 @@
             $('#selected-character').append(this);
             renderOpponents(selectedKey);
             $('#characters-section').hide();
-            game.opponentsLeft = Object.keys(players).length- 1
+            game.opponentsLeft = Object.keys(players).length- 1; 
             enableOpponentSelection();
         }
     )
