@@ -1,13 +1,10 @@
-
-
-
-    var players;
-    var game;
-    function gameInit(){
-         players = start(); // assigning value to players, inside array
-         game = resetGame(); 
-         renderPlayers();
-    }
+var players;
+var game;
+function gameInit(){
+    players = start(); // assigning value to players, inside array
+    game = resetGame(); 
+    renderPlayers();
+}
     //Array of Playable Characters
     function start() { //define all players values
        return {
