@@ -22,38 +22,39 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-md-12 main-section-title">
+      <div class="col-md-12 banner">
         Simpsons RPG
       </div>
     </div>
     <div class="row" id="main-game-section">
      <div id="col-md-10 main-game-section">
     
-    <div class="row" id="characters-section">
-      <div class="col-md-12 section-title">Select Your Character</div>
-    <div id="character-area"></div>
-    </div>
-    
-    <div id="selected-character-section">
-    <div class="section-title">Playing As</div>
-    
-    <div id="selected-character"></div>
-    </div>
-    
-    <div id="available-to-attack-section">
-    <div class="section-title">Enemies On Deck</div>
-    </div>
-    <div class="section-title">Fight Section</div>
-    <div id="fight-section">
-    <button id="attack-button" class="btn btn-info" style="display: none;">Attack</button>
-    </div>
-    <div id="action">
-    <div class="character-section">
-    <div class="section-title">Opponent</div>
-    
-    <div id="defender"></div>
-    </div>
-    </div>
+        <div class="row" id="characters-section">
+            <div class="col-md-12 title">Select Your Fighter</div>
+            <div id="character-area"></div>
+        </div>
+        
+        <div id="selected-character-section">
+          <div class="title">Playing As</div>
+          
+          <div id="active-player"></div>
+        </div>
+        
+        <div id="available-to-attack-section">
+          <div class="title">Enemies On Deck</div>
+        </div>
+        
+        <div class="title">Fight Section</div>
+        <div id="fight-section">
+        <button id="attack-button" class="btn btn-info" style="display: none;">Attack</button>
+        </div>
+        <div id="action">
+        <div class="character-section">
+        <div class="title">Opponent</div>
+        
+        <div id="opponent"></div>
+        </div>
+        </div>
     </div>
     
     <div id="game-message"></div>

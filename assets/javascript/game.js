@@ -4,13 +4,12 @@
     var players;
     var game;
     function gameInit(){
-        console.log("game init");
-         players = playerReset(); // assigning value to players, inside array
+         players = start(); // assigning value to players, inside array
          game = resetGame(); 
          renderPlayers();
     }
     //Array of Playable Characters
-    function playerReset() { //define all players values
+    function start() { //define all players values
        return {
         'homer': {
             name: "Homer",
@@ -45,18 +44,17 @@
     function resetGame(){ //empty keys
         return {
         charSelected: null, //user player
-        activeDef: null, //current opponent
+        activeOpp: null, //current opponent
         opponentsLeft: 0,
         attacks: 0
         }
     }
 
     function createPlayerDiv(players, key){//create character skeleton, fill with players
-        console.log("creatCharDiv");
-        var playerDiv = $("<div class='character' data-name='"+ key+"'>");
-        var playerName = $("<div class= 'character-name'>").text(players.name);
-        var playerImage = $("<img alt='player image' class='character-image'>").attr("src", players.imageUrl);
-        var playerHP = $("<div class= 'character-health'>").text(`HP ${players.hp}`);
+        var playerDiv = $("<div class='player' data-name='"+ key+"'>");
+        var playerName = $("<div class= 'player-name'>").text(players.name);
+        var playerImage = $("<img alt='player image' class='player-image'>").attr("src", players.imageUrl);
+        var playerHP = $("<div class= 'player-hp'>").text(`HP ${players.hp}`);
         playerDiv.append(playerName);
         playerDiv.append(playerImage);
         playerDiv.append(playerHP);
@@ -64,7 +62,6 @@
     }
 
     function renderPlayers(){
-        console.log("rendering char");
         var keys = Object.keys(players);
         for(var i = 0; i< keys.length; i++){
             var playerKey = keys[i];
@@ -75,46 +72,47 @@
     }
 
     function renderOpponents(selectedPlayerKey){
-        console.log("rendering opp");
         var playerKeys = Object.keys(players)
         for(var j = 0; j <playerKeys.length; j++){
                 if (playerKeys[j] !== selectedPlayerKey){
                     var opponentKey = playerKeys[j];
                     var opponent = players[opponentKey];
                     var opponentDiv = createPlayerDiv(opponent, opponentKey);
-                    $(opponentDiv).addClass('enemy');
+                    $(opponentDiv).addClass('opponent');
                     $('#available-to-attack-section').append(opponentDiv);
                 }
             }
         }
 
     function enableOpponentSelection(){
-         $('.enemy').on('click.enemySelect', function(){
-            console.log('opponent selected');
+         $('.opponent').on('click.enemySelect', function(){
             var opponent = $(this).attr('data-name');
-            game.activeDef = players[opponent];
-            $('#defender').append(this);
+            game.activeOpp = players[opponent];
+            $('#opponent').append(this);
             $('#attack-button').show();
-            $('.enemy').off('click.enemySelect');
+            $('.opponent').off('click.enemySelect');
         }
     )}
 
         
     function attack(attacks){
-        game.activeDef.hp -= game.charSelected.attackPower*attacks;
-        
+        game.activeOpp.hp -= game.charSelected.attackPower*attacks;      
     }
+
     function defend(){
-        game.charSelected.hp -= game.activeDef.counterAttack;
+        game.charSelected.hp -= game.activeOpp.counterAttack;
     }
+
     function checkDefHP(){
         console.log("checking def HP");
-        return game.activeDef.hp <= 0;
+        return game.activeOpp.hp <= 0;
     }
+
     function checkHP(){
         console.log("check hero hp");
         return game.charSelected.hp <= 0; 
     }
+
     function gameStatusCheck(){
         console.log("checking if game won");
         return game.opponentsLeft === 0;
@@ -122,19 +120,18 @@
 
     function attackState(){
         if (checkHP()){
-            alert("You were beaten by "+ game.activeDef.name)
-            $("#selected-character").empty();
+            alert("You were beaten by "+ game.activeOpp.name)
+            $("#active-player").empty();
             $("#reset-button").show();
             return true;
         } else if (checkDefHP()) {
-            console.log("defender dead");
             game.opponentsLeft--;
-            $("#defender").empty();
+            $("#opponent").empty();
                 if(gameStatusCheck()) {
                     alert("You Win! Click reset to play again");  
                     $("#reset-button").show();
                 } else {
-                    alert(`You defeated ${game.activeDef.name} Select your net oppopnent.`);
+                    alert(`You defeated ${game.activeOpp.name} Select your next opponent.`);
                     enableOpponentSelection();
                 }
                return true } 
@@ -143,20 +140,19 @@
         
     
 
-    function emptyDivs(){
-        $('#defender').empty()
-        $('#available-to-attack-section .enemy').empty()
+    function clearData(){//clear all created and assigned divs
+        $('#opponent').empty()
+        $('#available-to-attack-section .opponent').empty()
         $('#character-area').empty()
-        $('#selected-character').empty()
+        $('#active-player').empty()
         $('#characters-section').show()
     }  
 
     $(document).ready(function() {
-        $('#character-area').on('click','.character',function(){
+        $('#character-area').on('click','.player',function(){
             var selectedKey = $(this).attr('data-name');
             game.charSelected = players[selectedKey];
-            console.log('player selected');
-            $('#selected-character').append(this);
+            $('#active-player').append(this);
             renderOpponents(selectedKey);
             $('#characters-section').hide();
             game.opponentsLeft = Object.keys(players).length- 1; 
@@ -165,20 +161,18 @@
     )
         
         $('#attack-button').on('click.attack',function(){
-                    console.log('attack clicked');
                     game.attacks++;
                     attack(game.attacks);
                     defend();
-                    $('#selected-character .character-health').text(`HP ${game.charSelected.hp}`);
-                    $('#defender .character-health').text(`HP ${game.activeDef.hp}`);
+                    $('#active-player .player-hp').text(`HP ${game.charSelected.hp}`);
+                    $('#opponent .player-hp').text(`HP ${game.activeOpp.hp}`);
                     if(attackState()){$(this).hide();
                 }
             }
         )
 
         $('#reset-button').on('click.reset',function(){
-            console.log('resetting game')
-            emptyDivs();
+            clearData();
             $(this).hide();
             gameInit()})
             gameInit()}) 
