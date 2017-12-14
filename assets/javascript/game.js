@@ -141,11 +141,12 @@
     
 
     function clearData(){//clear all created and assigned divs
-        $('#opponent').empty()
-        $('#available-to-attack-section .opponent').empty()
-        $('#character-area').empty()
-        $('#active-player').empty()
-        $('#characters-section').show()
+        $('#opponent').empty();
+        $('#available-to-attack-section .opponent').empty();
+        $('#character-area').empty();
+        $('#active-player').empty();
+        // $('.character-section').empty();
+        $('#characters-section').show();
     }  
 
     $(document).ready(function() {
